@@ -1,0 +1,71 @@
+
+
+Writing to a temp file :
+-> While writing new table to the db, no need of having that table in tableCatalogue.
+-> bufferManger.writePage(tablename, pageIndex, vvi rows, rows.size());
+	-> this will create a page in temp folder.
+	-> Will be in trunc mode, so can overwrite if the file already exists.
+
+Reading data from any existing relation : 
+-> It is required that the table must be present in tableCatalgoue before trying to acces it using getCursor methods
+-> this->writeRow(this->columnName, cout)
+
+Cursor cursor(tableName, index of the page required)
+cursor.getNext(false);		//this will give you next row of the page.
+cursor.getAllRows(false);	//gives all the rows of the given page.
+cursor->nextPage(cursor->pageIndex+1) //this will give us the next page
+------------------------------------------------------------------------------------------------
+
+Task1 Related : 
+
+parsedQuery.sortRelationName;
+parsedQuery.sortColumnNames;
+parsedQuery.sortingStrategies; //ASC or DESC
+
+this->blockCount will give number of blocks of the given table 
+
+this->maxRowsPerBlock
+this->columnCount
+this->rowCount
+
+-------------------------------------------------------------------------------
+Join related: 
+
+parsedQuery.joinResultRelationName = tokenizedQuery[0];
+parsedQuery.joinFirstRelationName = tokenizedQuery[3];
+parsedQuery.joinSecondRelationName = tokenizedQuery[4];
+parsedQuery.joinFirstColumnName = tokenizedQuery[6];
+parsedQuery.joinSecondColumnName = tokenizedQuery[8];
+parsedQuery.joinBinaryOperator = LESS_THAN | GREATER_THAN | GEQ | LEQ | EQUAL | NOT_EQUAL
+
+tempTable1->columnCount = ogTable->columnCount;
+tempTable1->columns = ogTable->columns;
+tempTable1->maxRowsPerBlock = ogTable->maxRowsPerBlock;
+
+Along the steps following should be updated : 
+tempTable1->rowCount = ogTable->rowCount;
+tempTable1->blockCount = ogTable->blockCount;
+tempTable1->rowsPerBlockCount = ogTable->rowsPerBlockCount;
+
+--------------------------------------------------------------------------------------
+GROUP BY related : 
+
+string groupResultRelationName = "";
+string groupingAttribute = "";
+string groupRelationName = "";
+string aggregateOne = "";
+string aggAttributeOne = "";
+BinaryOperator groupBinOp;
+long long int attributeValue;
+string aggregateTwo = "";
+string aggAttributeTwo = "";
+
+
+
+
+
+
+
+
+
+
